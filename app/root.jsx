@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
+import MainNavigation from './components/MainNavigation';
 
 import styles from './routes/styles/main.css';
 
@@ -29,9 +30,13 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <header>
+          {/* Setting MainNavigation here to target ALL routes/pages */}
+          <MainNavigation />
+        </header>
         {/* Where your pages get called to render to screen */}
         <Outlet />
-        {/* Restoring hte scrollbar position if users navigate between pages */}
+        {/* Restoring the scrollbar position if users navigate between pages */}
         <ScrollRestoration />
         {/* Injecting client side scripts when page is downloaded on the client side */}
         <Scripts />
