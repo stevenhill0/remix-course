@@ -68,7 +68,7 @@ export const action = async ({ request }) => {
   await storeNotes(updatedNotes);
 
   // Redirecting to another page: using the Remix default redirect function
-  // redirect returns a new response object that redirects the user
+  // redirect returns a new response object that redirects the user. Remember every redirect is a NEW request
   // Just provide the path you want to redirect the user to
   return redirect('/notes');
 };
