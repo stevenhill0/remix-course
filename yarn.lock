@@ -1570,6 +1570,13 @@
     set-cookie-parser "^2.4.8"
     source-map "^0.7.3"
 
+"@remix-run/v1-route-convention@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@remix-run/v1-route-convention/-/v1-route-convention-0.1.2.tgz#617e021ffd3b5c8c1ba2a3da36c87c365e81abb5"
+  integrity sha512-vlcG2+uNVMf0euoFzM3BR3fgj0xYhjQPSufxK0sCCOXVGCteAqfXtcMQs2pZVYrKjeXLL+8ok2L9ThyZkhyt+A==
+  dependencies:
+    minimatch "^7.4.3"
+
 "@remix-run/web-blob@^3.0.3", "@remix-run/web-blob@^3.0.4":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@remix-run/web-blob/-/web-blob-3.0.4.tgz#99c67b9d0fb641bd0c07d267fd218ae5aa4ae5ed"
@@ -5203,6 +5210,13 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
+
+minimatch@^7.4.3:
+  version "7.4.6"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-7.4.6.tgz#845d6f254d8f4a5e4fd6baf44d5f10c8448365fb"
+  integrity sha512-sBz8G/YjVniEz6lKPNpKxXwazJe4c19fEfV2GDMX6AjFz+MX9uDWIZW8XreVhkFW3fkIdTv/gxWr/Kks5FFAVw==
+  dependencies:
+    brace-expansion "^2.0.1"
 
 minimatch@^9.0.0:
   version "9.0.1"

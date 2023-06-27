@@ -1,7 +1,9 @@
-import { Form, useNavigation } from '@remix-run/react';
+import { Form, useActionData, useNavigation } from '@remix-run/react';
 import styles from './NewNote.css';
 
 function NewNote() {
+  // Accessing the data from notes.jsx action function
+  const data = useActionData();
   // The useNavigation hook contains useful data about ongoing requests that may be happening behind the scenes
   const navigation = useNavigation();
 
@@ -17,6 +19,9 @@ function NewNote() {
 
   return (
     <Form method="post" id="note-form">
+      {/* First seeing whether the data is available using optional chaining, and then seeing if it has a message */}
+      {/* If there is data and a message, then output data.message  */}
+      {data?.message && <p>{data.message}</p>}
       <p>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" name="title" required />

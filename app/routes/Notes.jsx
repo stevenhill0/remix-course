@@ -10,7 +10,6 @@ const Notes = () => {
   // useLoaderData gives us access to the returned data from the below Remix loader function
   // We use useLoaderData to print data to the screen
   const notes = useLoaderData();
-
   return (
     <main>
       <NewNote />
@@ -37,6 +36,7 @@ export const loader = async () => {
 // Note: EVERYTHING we put into the action function will run on the backend/server
 // Remix will ONLY store code in the action() function on the server
 // The action function can use async/await, but does not need to
+// actions like loaders can ALSO return data
 export const action = async ({ request }) => {
   // This is how we can extract form data e.g. from the inputs the user types in
   const formData = await request.formData();
@@ -53,6 +53,11 @@ export const action = async ({ request }) => {
   const noteData = Object.fromEntries(formData);
 
   // Add validation
+  // trim() removes whitespace at beginning and end of the word
+  // Can also validate the content, but for the example ONLY validating the title
+  if (noteData.title.trim().length < 5) {
+    return { message: 'Invalid title - must be at least 5 characters long.' };
+  }
 
   // Using the utility function to get notes
   const existingNotes = await getStoredNotes();
