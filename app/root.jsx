@@ -8,6 +8,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from '@remix-run/react';
 import MainNavigation from './components/MainNavigation';
 
@@ -43,7 +44,10 @@ export default function App() {
 }
 
 // The error prop is the default JS error object, and will have a message property we can access
-export const ErrorBoundary = ({ error }) => {
+export const ErrorBoundary = () => {
+  const routeError = useRouteError();
+  const message = routeError.message || 'Oops! Something went wrong.';
+
   <html lang="en">
     <head>
       <meta charSet="utf-8" />
@@ -61,7 +65,7 @@ export const ErrorBoundary = ({ error }) => {
       </header>
       <main className="error">
         <h1>An error occurred</h1>
-        <p>{error.message}</p>
+        <p>{message}</p>
         <p>
           Back to <Link to="/">safety</Link>!
         </p>
