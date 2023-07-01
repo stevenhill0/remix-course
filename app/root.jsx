@@ -43,7 +43,7 @@ export default function App() {
   );
 }
 
-// The error prop is the default JS error object, and will have a message property we can access
+// Use useRouteError to pull the error message
 export const ErrorBoundary = () => {
   const routeError = useRouteError();
   const message = routeError.message || 'Oops! Something went wrong.';
