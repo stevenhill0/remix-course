@@ -1,5 +1,10 @@
-import { redirect } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, redirect } from '@remix-run/node';
+import {
+  isRouteErrorResponse,
+  Link,
+  useLoaderData,
+  useRouteError,
+} from '@remix-run/react';
 
 import NewNote, { links as newNoteLinks } from '../components/NewNote';
 import NoteList, { links as noteListLinks } from '../components/NoteList';
@@ -20,6 +25,35 @@ const Notes = () => {
 
 export default Notes;
 
+export const ErrorBoundary = () => {
+  const routeError = useRouteError();
+  const message = routeError.message || 'Oops! Something went wrong.';
+
+  // For V2 Convention CatchBoundary is no longer used
+  // isRouteErrorResponse v2 convention replaces the useCatch from V1 convention for printing thrown responses
+  if (isRouteErrorResponse(routeError)) {
+    return (
+      <main className="info-message">
+        <NewNote />
+        <h1>Oops</h1>
+        <p>Status: {routeError.status}</p>
+        <p>{routeError.data?.message}</p>
+      </main>
+    );
+  }
+
+  // Error Message
+  return (
+    <main className="error">
+      <h1>An error related to your notes occurred!</h1>
+      <p>{message}</p>
+      <p>
+        Back to <Link to="/">safety</Link>!
+      </p>
+    </main>
+  );
+};
+
 // The native Remix loader function  is used to fetch/GET data
 // Like the action function it is ALWAYS run on the server
 // The loader function can use async/await, but does not need to
@@ -27,8 +61,18 @@ export default Notes;
 export const loader = async () => {
   const notes = await getStoredNotes();
 
+  if (!notes || notes.length === 0) {
+    // The json() function: 1st arg: generates a response object, which contains some json data; 2nd arg: option object
+    // 2nd arg: can set your type of error using status e.g. 404; statusText e.g. Not Found
+    throw json(
+      { message: 'Could not find any notes' },
+      { status: 404, statusText: 'Not Found' }
+    );
+  }
+
   // By returning notes, gives the above Notes Component access to the raw data by using the useLoaderData() hook, provided by Remix
   // Note: the data is temporarily converted to a data string  so you cannot return any objects, will ONLY get the plain data i.e. strings
+  // When using the standard return, it will return the default page Component, in this case the above Notes Component
   return notes;
 };
 
