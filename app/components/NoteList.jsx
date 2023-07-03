@@ -10,7 +10,7 @@ function NoteList({ notes }) {
           {/* The Link Component supports RELATIVE paths. This means if you type 'note-1': note-1 will appended to the currently active path i.e. localhost:3000/notes/note-1
           If you were to add a slash at the beginning of the path, it will change to an ABSOLUTE path
            */}
-          <Link to={'/' + note.id}>
+          <Link to={note.id}>
             <article>
               <header>
                 <ul className="note-meta">

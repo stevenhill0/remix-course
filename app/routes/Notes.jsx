@@ -15,6 +15,7 @@ const Notes = () => {
   // useLoaderData gives us access to the returned data from the below Remix loader function
   // We use useLoaderData to print data to the screen
   const notes = useLoaderData();
+
   return (
     <main>
       <NewNote />
