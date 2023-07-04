@@ -23,7 +23,7 @@ export default function NoteDetailsPage() {
 export async function loader({ params }) {
   const notes = await getStoredNotes();
   const noteId = params.noteId;
-
+  console.log(noteId);
   const selectedNote = notes.find((note) => note.id === noteId);
 
   // Setting up server error response
